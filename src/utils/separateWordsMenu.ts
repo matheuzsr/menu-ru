@@ -14,7 +14,7 @@ export const separateText = (texto: string) => {
     return [initiator, end]
   }
 
-  const delimitadores = labels.map((label) => {
+  const delimitadores: any[] = labels.map((label) => {
     return getDelimiters(label, texto)
   })
 
