@@ -33,9 +33,8 @@ Guarnição:
   ${menuInformation?.menu.guarnicao}\n
 Sobremesa:
   ${menuInformation?.menu.sobremesa}`)
-    console.log(response)
   } catch (error) {
-    console.log(error)
+    console.error('Não foi possível buscar o cardápio de hoje!😢🍽️\nConsulte o site: https://ru.alegre.ufes.br/cardapio/')
   }
 }
 
