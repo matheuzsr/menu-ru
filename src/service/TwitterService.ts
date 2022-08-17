@@ -15,7 +15,6 @@ export class TwitterService {
      requestClient.appLogin()
 
       try {
-        
         await requestClient.v2.post('tweets', { text: message })
       } catch (error) {
         console.error(`{function: sendMessage | service:TwitterService} Não publicar o twit`)
