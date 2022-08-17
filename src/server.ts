@@ -2,7 +2,6 @@ import { TwitterService } from './service/TwitterService';
 import { MEAL_AND_LOCALE } from './enum/localeMenu'
 import { getMenuDate } from './service/FormatMenu'
 import { format } from 'date-fns'
-import './routes'
 
 const init = async () => {
   const period = MEAL_AND_LOCALE.alegre.jantar
