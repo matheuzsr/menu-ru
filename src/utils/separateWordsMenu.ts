@@ -22,6 +22,10 @@ export const separateText = (texto: string) => {
     return texto.slice(delimitador1[1], delimitador2[0]).split("\n").join("")
   }
 
+  if(!delimitadores) {
+    return {}
+  }
+  
   return {
     entrada: getLabelText(texto, delimitadores[0], delimitadores[1]),
     pratoPrincipal: getLabelText(texto, delimitadores[1], delimitadores[2]),
