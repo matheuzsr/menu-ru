@@ -68,3 +68,5 @@ const jobAlmoco = new RecurrenceJobAM()
   schedulerAM.newJob(jobAlmoco)
 //@ts-ignore
   schedulerPM.newJob(jobJantar)
+
+  console.log(new Date())
