@@ -37,4 +37,5 @@ Sobremesa:
   }
 }
 
+console.log(new Date())
 init()
