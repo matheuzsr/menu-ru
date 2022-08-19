@@ -4,6 +4,7 @@ import { getMenuDate } from './service/FormatMenu'
 import { format } from 'date-fns'
 
 const init = async () => {
+  console.log(new Date())
   const period = MEAL_AND_LOCALE.alegre.jantar
   const dateFormatted = format(new Date(), 'yyyy-MM-dd')
 
