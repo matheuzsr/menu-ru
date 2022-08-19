@@ -12,7 +12,7 @@ const { RecurrenceJob: RecurrenceJobPM } = schedulerPM
 
 const init = async (period = MEAL_AND_LOCALE.alegre.almoco) => {
   const dateFormatted = format(new Date(), 'yyyy-MM-dd')
-  console.log('Rodando:', period)
+  console.log('Rodando:', period, 'date:', new Date())
 
   const menuInformation = await getMenuDate(period, dateFormatted)
   const twitterService = new TwitterService()
