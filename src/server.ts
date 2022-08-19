@@ -2,7 +2,7 @@ import { TwitterService } from './service/TwitterService';
 import { MEAL_AND_LOCALE } from './enum/localeMenu'
 import { getMenuDate } from './service/FormatMenu'
 import { format } from 'date-fns'
-const scheduler = require ('./service/scheduler/index')
+const scheduler = require ('./service/scheduler')
 
 const { RecurrenceJob } = scheduler;
 
@@ -39,14 +39,26 @@ Sobremesa:
   }
 }
 
-const HOUR = 0
-const MINUTES = 10
-const job = new RecurrenceJob()
-  .executeJob("getInformationsPage", init())
+const HOUR_AM = 0
+const MINUTES_AM = 24
+
+const HOUR_PM = 0
+const MINUTES_PM = 25
+
+const jobAlmoco = new RecurrenceJob()
+  .executeJob("getInformationsPage", () => init( MEAL_AND_LOCALE.alegre.almoco))
   .every(1)
   .day()
-  .hour(HOUR)
-  .minute(MINUTES)
+  .hour(HOUR_AM)
+  .minute(MINUTES_AM)
+
+  const jobJantar = new RecurrenceJob()
+  .executeJob("getInformationsPage", () => init( MEAL_AND_LOCALE.alegre.jantar))
+  .every(1)
+  .day()
+  .hour(HOUR_PM)
+  .minute(MINUTES_PM)
 
 
-  scheduler.newJob(job);
+  scheduler.newJob(jobAlmoco);
+  scheduler.newJob(jobJantar);

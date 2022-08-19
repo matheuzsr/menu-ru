@@ -1,7 +1,9 @@
 const schedule = require('node-schedule');
-const RecurrenceJob = require('./RecurrenceJob');
+import RecurrenceJob from './RecurrenceJob'
 
 class Scheduler {
+  private jobs
+
   constructor () {
     this.jobs = new Map();
   }
@@ -24,14 +26,14 @@ class Scheduler {
     }
   }
 
-  newJob ({ identifier, rule, job }) {
+  newJob ({ identifier= '', rule= '', job= '' }) {
     if (!this.jobs.has(identifier)) {
       const newJob = schedule.scheduleJob(identifier, rule, job);
       this.jobs.set(identifier, newJob);
     }
   }
 
-  cancelJob (identifier) {
+  cancelJob (identifier= '') {
     schedule.cancelJob(identifier);
     this.jobs.delete(identifier);
   }

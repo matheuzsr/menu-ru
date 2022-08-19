@@ -1,4 +1,9 @@
 class RecurrenceJob {
+  private _rule: any
+  private __step: any
+  private _job: any
+  private _identifier: any
+
     constructor () {
       this._rule = {
         second: '0',
@@ -35,7 +40,7 @@ class RecurrenceJob {
       return `${second} ${minute} ${hour} ${date} ${month} ${daysOfWeek}`;
     }
   
-    setOnRule (segment, value) {
+    setOnRule (segment: any, value: number | string) {
       if (typeof value === 'number') {
         value = value.toString();
       }
@@ -47,7 +52,7 @@ class RecurrenceJob {
      * Informa a tarefa que será executada.
      * @param {function} jobFunction - função a ser executada.
      */
-    executeJob (identifier, jobFunction) {
+    executeJob (identifier: any, jobFunction: any) {
       if (typeof jobFunction !== 'function') {
         throw new Error('Task deve ser uma função.');
       }
@@ -61,7 +66,7 @@ class RecurrenceJob {
      * Informa um valor para a recorrência.
      * @param {number} number - recorrência
      */
-    every (number) {
+    every (number: number) {
       if (number) {
         this._step = `/${number}`;
       }
@@ -75,7 +80,7 @@ class RecurrenceJob {
      * @example second(1) | second('1-20') | second('5,8,15-20')
      * @param {number | string} second - segundo a executar a tarefa.
      */
-    second (second) {
+    second (second: number | string) {
       this.setOnRule('second', second);
       return this;
     }
@@ -86,7 +91,7 @@ class RecurrenceJob {
      * @example minute(1) | minute('1-20') | minute('5,8,15-20')
      * @param {number | string} minute - minuto a executar a tarefa.
      */
-    minute (minute) {
+    minute (minute: number | string) {
       this.setOnRule('minute', minute);
       return this;
     }
@@ -97,7 +102,7 @@ class RecurrenceJob {
      * @example hour(1) | hour('1-20') | hour('5,8,15-20')
      * @param {number | string} hour - hora a executar a tarefa.
      */
-    hour (hour) {
+    hour (hour: number | string) {
       this.setOnRule('hour', hour);
       return this;
     }
@@ -108,7 +113,7 @@ class RecurrenceJob {
      * @example day(1) | day('1-20') | day('5,8,15-20')
      * @param {number | string} day - dia a executar a tarefa.
      */
-    day (day) {
+    day (day: number | string) {
       this.setOnRule('day', day);
       return this;
     }
@@ -119,7 +124,7 @@ class RecurrenceJob {
      * @example month(1) | month('1-6') | month('1,4,6-10')
      * @param {number | string} month - mês a executar a tarefa.
      */
-    month (month) {
+    month (month: number | string) {
       this.setOnRule('month', month);
       return this;
     }
@@ -147,7 +152,7 @@ class RecurrenceJob {
      * @exemple daysOfWeek('1,4-6') - (segunda e de quinta a sábado)
      * @param {number | string} daysOfWeek - dias da semana a executar a tarefa.
      */
-    daysOfWeek (daysOfWeek) {
+    daysOfWeek (daysOfWeek: number | string) {
       if (daysOfWeek) {
         this._rule.daysOfWeek = daysOfWeek;
       }
@@ -155,5 +160,5 @@ class RecurrenceJob {
     }
   }
   
-  module.exports = RecurrenceJob;
+  export default RecurrenceJob;
   
