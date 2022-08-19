@@ -45,10 +45,10 @@ Sobremesa:
 }
 
 const HOUR_AM = 1
-const MINUTES_AM = 3 
+const MINUTES_AM = 7
 
 const HOUR_PM = 1
-const MINUTES_PM = 4
+const MINUTES_PM = 10
 
 const jobAlmoco = new RecurrenceJobAM()
   .executeJob('alegre-almoco', () => init( MEAL_AND_LOCALE.alegre.almoco))
