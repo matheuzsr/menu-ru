@@ -44,11 +44,11 @@ Sobremesa:
   }
 }
 
-const HOUR_AM = 1
-const MINUTES_AM = 15
+const HOUR_AM = 9
+const MINUTES_AM = 30
 
-const HOUR_PM = 1
-const MINUTES_PM = 16
+const HOUR_PM = 16
+const MINUTES_PM = 0
 
 const jobAlmoco = new RecurrenceJobAM()
   .executeJob('alegre-almoco', () => init( MEAL_AND_LOCALE.alegre.almoco))
