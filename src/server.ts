@@ -1,3 +1,6 @@
+import * as dotenv from 'dotenv'
+dotenv.config()
+
 import { TwitterService } from './service/TwitterService';
 import { MEAL_AND_LOCALE } from './enum/localeMenu'
 import { getMenuDate } from './service/FormatMenu'
@@ -36,7 +39,5 @@ Sobremesa:
     console.error('Não foi possível buscar o cardápio de hoje!😢🍽️\nConsulte o site: https://ru.alegre.ufes.br/cardapio/')
   }
 }
-
-console.log(new Date())
 
 init()
