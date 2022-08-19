@@ -38,4 +38,13 @@ Sobremesa:
   }
 }
 
+const HOUR = 0
+const MINUTES = 5
+const job = new RecurrenceJob()
+  .executeJob("getInformationsPage", getInformationsPage)
+  .every(1)
+  .day()
+  .hour(HOUR)
+  .minute(MINUTES);
+
 init()
