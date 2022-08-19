@@ -2,10 +2,11 @@ import { TwitterService } from './service/TwitterService';
 import { MEAL_AND_LOCALE } from './enum/localeMenu'
 import { getMenuDate } from './service/FormatMenu'
 import { format } from 'date-fns'
+import scheduler from './service/scheduler/index.js'
 
-const init = async () => {
-  console.log(new Date())
-  const period = MEAL_AND_LOCALE.alegre.jantar
+const { RecurrenceJob } = scheduler;
+
+const init = async (period = MEAL_AND_LOCALE.alegre.almoco) => {
   const dateFormatted = format(new Date(), 'yyyy-MM-dd')
 
   const menuInformation = await getMenuDate(period, dateFormatted)
@@ -39,12 +40,13 @@ Sobremesa:
 }
 
 const HOUR = 0
-const MINUTES = 5
+const MINUTES = 6
 const job = new RecurrenceJob()
-  .executeJob("getInformationsPage", getInformationsPage)
+  .executeJob("getInformationsPage", init())
   .every(1)
   .day()
   .hour(HOUR)
-  .minute(MINUTES);
+  .minute(MINUTES)
 
-init()
+
+  scheduler.newJob(job);
