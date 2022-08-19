@@ -1,6 +1,3 @@
-import * as dotenv from 'dotenv'
-dotenv.config()
-
 import { TwitterService } from './service/TwitterService';
 import { MEAL_AND_LOCALE } from './enum/localeMenu'
 import { getMenuDate } from './service/FormatMenu'
