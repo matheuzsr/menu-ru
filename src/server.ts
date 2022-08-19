@@ -45,23 +45,23 @@ Sobremesa:
 }
 
 const HOUR_AM = 1
-const MINUTES_AM = 7
+const MINUTES_AM = 15
 
 const HOUR_PM = 1
-const MINUTES_PM = 10
+const MINUTES_PM = 16
 
 const jobAlmoco = new RecurrenceJobAM()
   .executeJob('alegre-almoco', () => init( MEAL_AND_LOCALE.alegre.almoco))
   .every(1)
   .day()
-  .hour(HOUR_AM)
+  .hour(HOUR_AM+3)
   .minute(MINUTES_AM)
 
   const jobJantar = new RecurrenceJobPM()
   .executeJob('alegre-jantar', () => init( MEAL_AND_LOCALE.alegre.jantar))
   .every(1)
   .day()
-  .hour(HOUR_PM)
+  .hour(HOUR_PM+3)
   .minute(MINUTES_PM)
 
 //@ts-ignore
