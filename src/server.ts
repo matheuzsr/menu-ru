@@ -40,7 +40,7 @@ Sobremesa:
 }
 
 const HOUR = 0
-const MINUTES = 7
+const MINUTES = 10
 const job = new RecurrenceJob()
   .executeJob("getInformationsPage", init())
   .every(1)
