@@ -2,12 +2,17 @@ import { TwitterService } from './service/TwitterService';
 import { MEAL_AND_LOCALE } from './enum/localeMenu'
 import { getMenuDate } from './service/FormatMenu'
 import { format } from 'date-fns'
-const scheduler = require ('./service/scheduler')
+import schedulerAM = require ('./service/scheduler')
+import schedulerPM = require ('./service/scheduler')
 
-const { RecurrenceJob } = scheduler;
+//@ts-ignore
+const { RecurrenceJob: RecurrenceJobAM } = schedulerAM
+//@ts-ignore
+const { RecurrenceJob: RecurrenceJobPM } = schedulerPM
 
 const init = async (period = MEAL_AND_LOCALE.alegre.almoco) => {
   const dateFormatted = format(new Date(), 'yyyy-MM-dd')
+  console.log('Rodando:', period)
 
   const menuInformation = await getMenuDate(period, dateFormatted)
   const twitterService = new TwitterService()
@@ -39,26 +44,27 @@ Sobremesa:
   }
 }
 
-const HOUR_AM = 0
-const MINUTES_AM = 24
+const HOUR_AM = 1
+const MINUTES_AM = 3 
 
-const HOUR_PM = 0
-const MINUTES_PM = 25
+const HOUR_PM = 1
+const MINUTES_PM = 4
 
-const jobAlmoco = new RecurrenceJob()
-  .executeJob("getInformationsPage", () => init( MEAL_AND_LOCALE.alegre.almoco))
+const jobAlmoco = new RecurrenceJobAM()
+  .executeJob('alegre-almoco', () => init( MEAL_AND_LOCALE.alegre.almoco))
   .every(1)
   .day()
   .hour(HOUR_AM)
   .minute(MINUTES_AM)
 
-  const jobJantar = new RecurrenceJob()
-  .executeJob("getInformationsPage", () => init( MEAL_AND_LOCALE.alegre.jantar))
+  const jobJantar = new RecurrenceJobPM()
+  .executeJob('alegre-jantar', () => init( MEAL_AND_LOCALE.alegre.jantar))
   .every(1)
   .day()
   .hour(HOUR_PM)
   .minute(MINUTES_PM)
 
-
-  scheduler.newJob(jobAlmoco);
-  scheduler.newJob(jobJantar);
+//@ts-ignore
+  schedulerAM.newJob(jobAlmoco)
+//@ts-ignore
+  schedulerPM.newJob(jobJantar)
