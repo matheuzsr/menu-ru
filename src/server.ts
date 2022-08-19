@@ -2,7 +2,7 @@ import { TwitterService } from './service/TwitterService';
 import { MEAL_AND_LOCALE } from './enum/localeMenu'
 import { getMenuDate } from './service/FormatMenu'
 import { format } from 'date-fns'
-import scheduler from './service/scheduler/index.js'
+const scheduler = require ('./service/scheduler/index')
 
 const { RecurrenceJob } = scheduler;
 
@@ -40,7 +40,7 @@ Sobremesa:
 }
 
 const HOUR = 0
-const MINUTES = 6
+const MINUTES = 7
 const job = new RecurrenceJob()
   .executeJob("getInformationsPage", init())
   .every(1)
